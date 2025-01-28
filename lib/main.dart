@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:frontend/app/provider/user_provider.dart';
 
 import 'app/pages/home_page.dart';
+import 'app/pages/login_page.dart';
 import 'app/pages/signup_page.dart';
 
 void main() => runApp(MyApp());
@@ -31,10 +32,11 @@ class _MyAppState extends State<MyApp> {
 
               //floatingActionButtonTheme: FloatingACtionButtonThemeData()
             ),
-            initialRoute: '/',
+            initialRoute: 'home',
             routes: {
-              '/': (context) => const HomePage(),
-              '/signup': (context) => const SignupPage(),
+              '/': (context) => const LoginPage(),
+              'signup': (context) => const SignupPage(),
+              'home': (context) => const HomePage()
             }));
   }
 }

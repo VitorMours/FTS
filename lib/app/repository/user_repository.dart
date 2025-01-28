@@ -1,7 +1,7 @@
 import "../interfaces/user_interface.dart";
 
 class UserRepository extends IUser {
-  // TODO: Usar o backend para fazer a criacao dos usuarios
+  final String backEnd = "http://localhost:3000/api";
 
   @override
   void createUser() {}

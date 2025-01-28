@@ -11,12 +11,19 @@ class SignupFormWidget extends StatefulWidget {
 
 class _SignupFormWidgetState extends State<SignupFormWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final nameController = TextEditingController();
+  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Form(
         key: _formKey,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           TextFormField(
+              controller: nameController,
               style: TextStyle(color: Colors.white),
               cursorColor: Colors.white,
               decoration: SignUpFormStyle(Icons.person, "Insira seu nome"),
@@ -28,6 +35,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
               }),
           Gap(15),
           TextFormField(
+              controller: usernameController,
               style: TextStyle(color: Colors.white),
               cursorColor: Colors.white,
               decoration: SignUpFormStyle(
@@ -40,6 +48,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
               }),
           Gap(15),
           TextFormField(
+              controller: emailController,
               style: TextStyle(color: Colors.white),
               cursorColor: Colors.white,
               decoration: SignUpFormStyle(Icons.email, "Insira seu email"),
@@ -51,6 +60,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
               }),
           Gap(15),
           TextFormField(
+              controller: passwordController,
               style: TextStyle(color: Colors.white),
               cursorColor: Colors.white,
               decoration: SignUpFormStyle(Icons.password, "Insira a sua senha"),
