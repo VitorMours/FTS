@@ -9,7 +9,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-
+  TextStyle selectedStyle =
+      TextStyle(color: Colors.black, fontWeight: FontWeight.w600);
+  TextStyle unselectedStyle =
+      TextStyle(color: Colors.black87, fontWeight: FontWeight.normal);
   changeDestination(int index) {
     setState(() {
       _selectedIndex = index;
@@ -20,9 +23,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Row(children: <Widget>[
       NavigationRail(
+          labelType: NavigationRailLabelType.all,
+          selectedLabelTextStyle: selectedStyle,
+          unselectedLabelTextStyle: unselectedStyle,
           useIndicator: true,
           elevation: 5,
-          minWidth: 75,
+          minWidth: 90,
           selectedIndex: _selectedIndex,
           onDestinationSelected: changeDestination,
           destinations: [
@@ -31,23 +37,16 @@ class _HomePageState extends State<HomePage> {
                 selectedIcon: Icon(Icons.home),
                 label: Text("Home")),
             NavigationRailDestination(
-                icon: Icon(Icons.insert_chart_outlined_outlined),
+                icon: Icon(Icons.insert_chart_outlined),
                 selectedIcon: Icon(Icons.insert_chart),
-                label: Text("Progresso Continuado")),
+                label: Text("Progress")),
             NavigationRailDestination(
                 icon: Icon(Icons.table_chart_outlined),
                 selectedIcon: Icon(Icons.table_chart),
-                label: Text("Registro dos Estudantes"))
+                label: Text("Database"))
           ]),
-      Container(
-          color: Colors.white,
-          child: Column(children: [
-            Text("1"),
-            Text("2"),
-            Text("3"),
-            Text("4"),
-            Text("5"),
-          ]))
+      VerticalDivider(thickness: 1, width: 0.5),
+      Expanded(flex: 1, child: Container(color: Colors.white))
     ]);
   }
 }

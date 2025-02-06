@@ -32,11 +32,11 @@ class _MyAppState extends State<MyApp> {
 
               //floatingActionButtonTheme: FloatingACtionButtonThemeData()
             ),
-            initialRoute: 'home',
+            initialRoute: '/',
             routes: {
               '/': (context) => const LoginPage(),
-              'signup': (context) => const SignupPage(),
-              'home': (context) => const HomePage()
+              '/signup': (context) => const SignupPage(),
+              '/home': (context) => const HomePage()
             }));
   }
 }

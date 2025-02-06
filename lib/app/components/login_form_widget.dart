@@ -11,6 +11,15 @@ class LoginFormWidget extends StatefulWidget {
 
 class _LoginFormWidgetState extends State<LoginFormWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final credentialController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    credentialController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +29,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
           key: _formKey,
           child: Column(children: [
             TextFormField(
+              controller: credentialController,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   icon: Icon(Icons.person),
@@ -30,6 +40,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
             ),
             Gap(20),
             TextFormField(
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -56,22 +67,42 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
             Gap(20),
             FilledButton(
               style: ElevatedButtonStyle(Colors.blueGrey),
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context)
-                      .showMaterialBanner(MaterialBanner(
-                    backgroundColor: MaterialBannerAlertBackgroundColor,
-                    actions: [
-                      IconButton(
-                          icon: Icon(Icons.close, color: Colors.red),
-                          onPressed: () {
-                            ScaffoldMessenger.of(context)
-                                .hideCurrentMaterialBanner();
-                          })
-                    ],
-                    content: Text("Login feito!",
-                        style: MaterialBannerAlertTextStyle),
-                  ));
+                  if (credentialController.text == "admin" &&
+                      passwordController.text == "admin") {
+                    ScaffoldMessenger.of(context)
+                        .showMaterialBanner(MaterialBanner(
+                      backgroundColor: MaterialBannerSuccessBackgroundColor,
+                      actions: [
+                        IconButton(
+                            icon: Icon(Icons.close, color: Colors.green),
+                            onPressed: () {
+                              ScaffoldMessenger.of(context)
+                                  .clearMaterialBanners();
+                            })
+                      ],
+                      content: Text("Login feito con sucesso!",
+                          style: MaterialBannerSuccessTextStyle),
+                    ));
+                    await Future.delayed(Duration(seconds: 2));
+                    Navigator.pushNamed(context, "/home");
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showMaterialBanner(MaterialBanner(
+                      backgroundColor: MaterialBannerAlertBackgroundColor,
+                      actions: [
+                        IconButton(
+                            icon: Icon(Icons.close, color: Colors.red),
+                            onPressed: () {
+                              ScaffoldMessenger.of(context)
+                                  .clearMaterialBanners();
+                            })
+                      ],
+                      content: Text("Error in the credentials for login.",
+                          style: MaterialBannerAlertTextStyle),
+                    ));
+                  }
                 }
               },
               child: Text("Fazer login"),

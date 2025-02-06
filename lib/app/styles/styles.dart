@@ -4,9 +4,14 @@ const MaterialBannerAlertTextStyle = TextStyle(
   color: Color.fromARGB(255, 255, 17, 0),
   fontWeight: FontWeight.bold,
 );
+const MaterialBannerSuccessTextStyle = TextStyle(
+  color: Colors.green,
+  fontWeight: FontWeight.bold,
+);
 
 const MaterialBannerAlertBackgroundColor = Color.fromRGBO(255, 100, 100, 0.5);
-
+const MaterialBannerSuccessBackgroundColor =
+    Color.fromRGBO(136, 255, 100, 0.502);
 InputDecoration SignUpFormStyle(IconData icon, String? hintText) {
   return InputDecoration(
       iconColor: Colors.white,
